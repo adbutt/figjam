@@ -1,0 +1,40 @@
+/**
+ * project.scss
+ * ---
+ * Main `sass` file. Import here `sass` files
+ */
+
+// Global
+@import "global/functions";
+@import "global/variables";
+@import "global/mixins";
+@import "bower_components/sassy-inputs/sass/main";
+@import "global/placeholders";
+@import "global/mediaqueries";
+
+//HTML5 RESET
+@import "base/reset";
+
+// Base
+@import "base/fonts";
+@import "base/icons";
+@import "base/typography";
+@import "base/wordpress";
+
+// Layout
+@import "layout/header";
+@import "layout/sidebar";
+@import "layout/footer";
+
+//Components
+@import "components/nav";
+@import "components/breadcrumbs";
+@import "components/buttons";
+@import "components/tables";
+@import "components/forms";
+
+//Templates
+@import "templates/home";
+
+//Print
+@import "base/print";

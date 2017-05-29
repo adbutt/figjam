@@ -1,0 +1,34 @@
+/**
+ * partials/header
+ * ---
+ */
+
+// Header container
+.header {
+  padding-top: rem-calc(40);
+
+  @include for-phone-only {
+    background: #ba1b0a;
+  }
+
+  @include for-tablet-portrait-up {
+    background: #bada55;
+  }
+
+  @include for-tablet-portrait-only {
+    background: #222;
+  }
+
+  @include for-tablet-landscape-only {
+    background: purple;
+  }
+}
+
+// Logo
+.logo {
+  display: block;
+}
+
+img.logo-img {
+  max-width: 80px !important;
+}
