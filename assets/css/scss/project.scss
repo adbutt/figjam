@@ -23,6 +23,7 @@
 
 // Layout
 @import "layout/header";
+@import "layout/body";
 @import "layout/sidebar";
 @import "layout/footer";
 
@@ -32,6 +33,7 @@
 @import "components/buttons";
 @import "components/tables";
 @import "components/forms";
+@import "components/search";
 
 //Templates
 @import "templates/home";

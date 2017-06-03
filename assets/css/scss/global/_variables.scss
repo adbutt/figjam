@@ -4,42 +4,44 @@
  */
 
 /**
- * Colors
+ * Colours
  */
 
-$white         : #FFFFFF !default;
-$ghost         : #FAFAFA !default;
-$snow          : #F9F9F9 !default;
-$vapor         : #F6F6F6 !default;
-$white-smoke   : #F5F5F5 !default;
-$silver        : #EFEFEF !default;
-$smoke         : #EEEEEE !default;
-$gainsboro     : #DDDDDD !default;
-$iron          : #CCCCCC !default;
-$base          : #AAAAAA !default;
-$aluminum      : #999999 !default;
-$jumbo         : #888888 !default;
-$monsoon       : #777777 !default;
-$steel         : #666666 !default;
-$charcoal      : #555555 !default;
-$tuatara       : #444444 !default;
-$oil           : #333333 !default;
-$jet           : #222222 !default;
-$black         : #000000 !default;
+$white         : #fff !default;
+$ghost         : #fafafa !default;
+$snow          : #f9f9f9 !default;
+$vapor         : #f6f6f6 !default;
+$white-smoke   : #f5f5f5 !default;
+$silver        : #efefef !default;
+$smoke         : #eee !default;
+$gainsboro     : #ddd !default;
+$iron          : #ccc !default;
+$base          : #aaa !default;
+$aluminum      : #999 !default;
+$jumbo         : #888 !default;
+$monsoon       : #777 !default;
+$steel         : #666 !default;
+$charcoal      : #555 !default;
+$tuatara       : #444 !default;
+$oil           : #333 !default;
+$jet           : #222 !default;
+$black         : #000 !default;
 
-
-$primary-color: #008CBA !default;   // bondi-blue
+$primary-color: #008cba !default;   // bondi-blue
 $secondary-color: #e7e7e7 !default; // white-lilac
 $alert-color: #f04124 !default;     // cinnabar
-$success-color: #43AC6A !default;   // sea-green
+$success-color: #43ac6a !default;   // sea-green
 $warning-color: #f08a24 !default;   // carrot
 $info-color: #a0d3e8 !default;      // cornflower
 
-
-$selection-bg: #04A4CC;
+$selection-bg: #04a4cc;
 
 $anchor-font-color: $primary-color;
 $anchor-text-decoration:none;
+
+//main navigation colours
+$main-navigation-bg: $black;
+$navigation-toggle: $white;
 
 //form colors
 $sassy-base-color: $steel; //border color
@@ -79,8 +81,8 @@ $header-font-weight: $font-weight-normal !default;
 $header-font-style: normal !default;
 $header-font-color: $jet !default;
 $header-line-height: 1.4 !default;
-$header-top-margin: .2rem !default;
-$header-bottom-margin: .5rem !default;
+$header-top-margin: 0.2rem !default;
+$header-bottom-margin: 0.5rem !default;
 $header-text-rendering: optimizeLegibility !default;
 
 // We use these to control header font sizes
@@ -103,8 +105,8 @@ $h6-font-reduction: 0 !default;
 $subheader-line-height: 1.4 !default;
 $subheader-font-color: scale-color($header-font-color, $lightness: 35%) !default;
 $subheader-font-weight: $font-weight-normal !default;
-$subheader-top-margin: .2rem !default;
-$subheader-bottom-margin: .5rem !default;
+$subheader-top-margin: 0.2rem !default;
+$subheader-bottom-margin: 0.5rem !default;
 
 // A general <small> styling
 $small-font-size: 60% !default;
@@ -154,7 +156,7 @@ $list-ordered-side-margin: 1.4rem !default;
 $list-side-margin-no-bullet: 0 !default;
 $list-nested-margin: rem-calc(20) !default;
 $definition-list-header-weight: $font-weight-bold !default;
-$definition-list-header-margin-bottom: .3rem !default;
+$definition-list-header-margin-bottom: 0.3rem !default;
 $definition-list-margin-bottom: rem-calc(12) !default;
 
 // We use these to style blockquotes
@@ -194,16 +196,17 @@ $microformat-abbr-font-decoration: none !default;
 // Controls the page margin when printing the website
 $print-margin: 0.34in !default;
 
-
-
 // We use these to control text direction settings
 $text-direction: ltr !default;
 $default-float: left !default;
 $opposite-direction: right !default;
+
 @if $text-direction == ltr {
   $default-float: left;
   $opposite-direction: right;
-} @else {
+}
+
+@else {
   $default-float: right;
   $opposite-direction: left;
 }
@@ -214,8 +217,8 @@ $global-rounded: 1000px !default;
 
 // We use these to control inset shadow shiny edges and depressions.
 $shiny-edge-size: 0 1px 0 !default;
-$shiny-edge-color: rgba(#fff, .5) !default;
-$shiny-edge-active-color: rgba(#000, .2) !default;
+$shiny-edge-color: rgba(#fff, 0.5) !default;
+$shiny-edge-active-color: rgba(#000, 0.2) !default;
 
 //We use this as cursors values for enabling the option of having custom cursors in the whole site's stylesheet
 $cursor-auto-value: auto !default;
@@ -230,8 +233,7 @@ $cursor-text-value: text !default;
  * Grid
  */
 
-$wrapper-width: 1280px;
-
+$wrapper-width: 100%;
 
 $padding-horizontal-base: 5px;
 $padding-vertical-base: 5px;
@@ -243,7 +245,6 @@ $margin-vertical-large: 15px;
 /**
  * Tables
  */
-
 
 // These control the background color for the table and even rows
 $table-bg: $white !default;

@@ -4,46 +4,46 @@
  * ---
  */
 
-
 // Global box-sizing
 *,
-*:after,
-*:before {
+*::after,
+*::before {
   box-sizing: border-box;
 }
-html, body { height:100%; }
 
 html,
-body { font-size:$font-size-base; }
+body { height: 100%; }
 
+html,
+body { font-size: $font-size-base; }
 
 html {
   // `font-size` for REM use
   // font-size: 100%;
   // Cancel highlight color when tapping in iOS
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {
-      background: $body-bg;
-      color: $body-font-color;
-      // cursor: $cursor-auto-value;
-      font-family: $body-font-family;
-      font-style: $body-font-style;
-      font-weight: $body-font-weight;
-      line-height: $line-height-base; // Set to $base-line-height to take on browser default of 150%
-      margin: 0;
-      padding: 0;
-      position: relative;
-    }
+  background: $body-bg;
+  color: $body-font-color;
+  // cursor: $cursor-auto-value;
+  font-family: $body-font-family;
+  font-style: $body-font-style;
+  font-weight: $body-font-weight;
+  line-height: $line-height-base; // Set to $base-line-height to take on browser default of 150%
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
 
 img {
   // Don't allow <IMG> to be larger then its container
   max-width: 100%;
-  height:auto;
+  height: auto;
   // Omit space caused by default style, between images lines
   vertical-align: middle;
-  display:inline-block;
+  display: inline-block;
 }
 
 // a {
@@ -73,13 +73,13 @@ input[type="search"] {
 
 // clearfix: http://nicolasgallagher.com/micro-clearfix-hack/
 .clear {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: " ";
     display: table;
   }
 
-  &:after {
+  &::after {
     clear: both;
   }
 }
@@ -108,12 +108,6 @@ p,
 blockquote,
 th,
 td {
-  margin:0;
-  padding:0;
-}
-.wrapper {
-  max-width: $wrapper-width;
-  padding: 0 $margin-horizontal-large;
-  margin: 0 auto;
-  position: relative;
+  margin: 0;
+  padding: 0;
 }

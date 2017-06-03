@@ -1,5 +1,23 @@
 <?php
 
+/**
+ * Register Menu Locations For The Theme
+*/
+
+if (!(function_exists('figjam_register_nav_menus'))) {
+    function figjam_register_nav_menus()
+    {
+        register_nav_menus(
+            array(
+        'primary'  => esc_html__('Standard Navigation', 'figjam'),
+        'offscreen'  => esc_html__('Offscreen & Slide Navigation', 'figjam'),
+        'left-vertical'  => esc_html__('Left Vertical Navigation', 'figjam'),
+        'footer'  => esc_html__('Footer Navigation', 'figjam')
+        )
+        );
+    }
+    add_action('init', 'figjam_register_nav_menus');
+}
 // Figjam Blank Navigation
 if (!(function_exists('figjam_nav'))) {
     function figjam_nav()
@@ -19,7 +37,7 @@ if (!(function_exists('figjam_nav'))) {
         'after'           => '',
         'link_before'     => '',
         'link_after'      => '',
-        'items_wrap'      => '<ul>%3$s</ul>',
+        'items_wrap'      => '<ul class="menu">%3$s</ul>',
         'depth'           => 0,
         'walker'          => ''
         )
@@ -29,26 +47,6 @@ if (!(function_exists('figjam_nav'))) {
 if (condition) {
     # code...
 }
-
-/**
- * Register Menu Locations For The Theme
-*/
-
-if (!(function_exists('figjam_register_nav_menus'))) {
-    function figjam_register_nav_menus()
-    {
-        register_nav_menus(
-            array(
-        'primary'  => esc_html__('Standard Navigation', 'figjam'),
-        'offscreen'  => esc_html__('Offscreen & Slide Navigation', 'figjam'),
-        'left-vertical'  => esc_html__('Left Vertical Navigation', 'figjam'),
-        'footer'  => esc_html__('Footer Navigation', 'figjam')
-        )
-        );
-    }
-    add_action('init', 'figjam_register_nav_menus');
-}
-
 /**
  * Register Widget Areas For The Theme
 */

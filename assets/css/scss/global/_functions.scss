@@ -9,6 +9,7 @@ $rem-base: 16px !default;
 //Convert to REM
 @function convert-to-rem($value, $base-value: $rem-base) {
   $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+
   @if ($value == 0rem) { $value:0; } //turn 0rem into 0
   @return $value;
 }
@@ -38,12 +39,13 @@ $rem-base: 16px !default;
   @if $max == 1 { @return convert-to-rem(nth($values, 1), $base-value); }
 
   $remValues: ();
+
   @for $i from 1 through $max {
     $remValues: append($remValues, convert-to-rem(nth($values, $i), $base-value));
   }
+
   @return $remValues;
 }
-
 
 @function em-calc($values, $base-value: $rem-base) {
   $remValues: rem-calc($values, $base-value: $rem-base);
@@ -53,9 +55,11 @@ $rem-base: 16px !default;
   @if $max == 1 { @return strip-unit(nth($remValues, 1)) * 1em; }
 
   $emValues: ();
+
   @for $i from 1 through $max {
     $emValues: append($emValues, strip-unit(nth($remValues, $i)) * 1em);
   }
+
   @return $emValues;
 }
 
@@ -69,9 +73,9 @@ $rem-base: 16px !default;
 }
 
 @function upper-bound($range) {
-    @if length($range) < 2 {
-        @return 999999999999;
-    }
+  @if length($range) < 2 {
+    @return 999999999999;
+  }
 
-    @return nth($range, 2);
+  @return nth($range, 2);
 }

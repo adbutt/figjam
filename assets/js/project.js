@@ -1413,37 +1413,29 @@ window.Modernizr = (function( window, document, undefined ) {
 
 	$( function() {
 		// DOM ready, take it away
-		$( '.product-wrapper' ).slick( {
-			infinite: true,
-			slidesToShow: 4,
-			slidesToScroll: 1,
-			responsive: [{
-				breakpoint: 1024,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 1,
-					infinite: true,
-					dots: false
-				}
-			},
-			{
-				breakpoint: 600,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 480,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1
-				}
-			}
-				// You can unslick at a given breakpoint now by adding:
-				// settings: "unslick"
-				// instead of a settings object
-			]
+	} );
+	$( document ).ready( function() {
+		//Nav Toggle
+		$( 'a.nav-toggle' ).click( function( e ) {
+			e.preventDefault();
+			$( 'body' ).toggleClass( 'nav--active' );
 		} );
+
+		$( 'a.search-toggle' ).click( function( e ) {
+			e.preventDefault();
+			$( '.search-wrapper' ).toggleClass( 'search--active' );
+			$( '#s' ).focus();
+		} );
+
+		$( 'a.search-close' ).click( function( e ) {
+			e.preventDefault();
+			$( '.search-wrapper' ).removeClass( 'search--active' );
+		} );
+
+		// $( 'body:not(.nav_on) header' ).click( function() {
+		// 	if ( $( 'body' ).hasClass( 'nav_on' ) === false ) {
+		// 		$( 'body' ).addClass( 'nav_on' );
+		// 	}
+		// } );
 	} );
 } )( window, document, jQuery );

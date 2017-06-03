@@ -23,6 +23,18 @@ l=i.getElementsByTagName(r)[0];h.async=1;h.src=e;l.parentNode.insertBefore(h,l)
 ga('create', 'UA-XXXXXXXX-XX', 'yourdomain.com');
 ga('send', 'pageview');
 </script>
+<div class="screenO"></div>
+<div class="search-wrapper">
+    <div class="search-inner">
+        <?php get_template_part('partials/modal-searchform'); ?>
+    </div>
+    <a href="#" class="search-close">
+        <span class="line1"></span>
+        <span class="line2"></span>
+        <span class="line3"></span>
+        <p>Close Search</p>
+    </a>
+</div>
 
 </body>
 </html>

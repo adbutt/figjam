@@ -5,30 +5,100 @@
 
 // Header container
 .header {
-  padding-top: rem-calc(40);
+  position: fixed;
+  width: 100%;
+  right: 0;
+  top: 0;
+  color: $white;
+  height: rem-calc(60);
+  z-index: 996;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+  text-align: center;
+  // cursor: pointer;
 
-  @include for-phone-only {
-    background: #ba1b0a;
+  .nav--active & {
+    height: 100%;
   }
+  // @include for-phone-only {
+  //   background: #ba1b0a;
+  // }
+  //
+  // @include for-tablet-portrait-up {
+  //   background: #bada55;
+  // }
+  //
+  // @include for-tablet-portrait-only {
+  //   background: black;
+  // }
+  //
+  // @include for-tablet-landscape-only {
+  //   background: purple;
+  // }
 
-  @include for-tablet-portrait-up {
-    background: #bada55;
-  }
+  @include for-tablet-landscape-up {
+    width: rem-calc(90);
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    text-align: center;
+    overflow: hidden;
 
-  @include for-tablet-portrait-only {
-    background: #222;
-  }
-
-  @include for-tablet-landscape-only {
-    background: purple;
+    .nav--active & {
+      width: rem-calc(500);
+      cursor: default;
+    }
   }
 }
 
 // Logo
 .logo {
   display: block;
+  top: rem-calc(10);
+  left: rem-calc(15);
+  height: rem-calc(50);
+  backface-visibility: hidden;
+  position: absolute;
+
+  @include for-tablet-landscape-up {
+    margin: rem-calc(40) auto;
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  svg {
+    height: auto;
+    width: 100%;
+    max-width: rem-calc(30);
+    backface-visibility: hidden;
+  }
 }
 
-img.logo-img {
-  max-width: 80px !important;
+.utility-menu {
+  display: block;
+  position: absolute;
+  top: rem-calc(15);
+  right: rem-calc(80);
+
+  @include for-tablet-landscape-up {
+    top: auto;
+    bottom: rem-calc(30);
+    right: auto;
+    width: 100%;
+  }
+}
+
+.search-toggle {
+  display: block;
+  height: rem-calc(50);
+  backface-visibility: hidden;
+
+  svg {
+    height: auto;
+    width: 100%;
+    max-width: rem-calc(30);
+    backface-visibility: hidden;
+  }
 }

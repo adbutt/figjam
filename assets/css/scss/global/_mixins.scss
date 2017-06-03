@@ -19,53 +19,58 @@
 //  @include deco_gradient_background(#ff00ff, #ff00cc, vertical);
 //  }
 
-@mixin deco_gradient_background($start-color, $end-color, $orientation)
- {
-   background: $start-color;
-   @if $orientation == vertical
-   {
-   // vertical
-   background: linear-gradient(to bottom,  $start-color 0%,$end-color 100%);
-   }
-   @else if $orientation == horizontal
-   {
-   // horizontal
-   background: linear-gradient(to right,  $start-color 0%,$end-color 100%);
-   }
-   @else
-   {
-   // radial
-   background: radial-gradient(ellipse at center,  $start-color 0%,$end-color 100%);
-   }
- }
+@mixin deco_gradient_background($start-color, $end-color, $orientation) {
+  background: $start-color;
+
+  @if $orientation == vertical {
+    // vertical
+    background: linear-gradient(to bottom, $start-color 0%, $end-color 100%);
+  }
+
+  @else if $orientation == horizontal {
+    // horizontal
+    background: linear-gradient(to right, $start-color 0%, $end-color 100%);
+  }
+
+  @else {
+    // radial
+    background: radial-gradient(ellipse at center, $start-color 0%, $end-color 100%);
+  }
+}
 
 //Media Queries
 
 @mixin for-phone-only {
   @media #{$small-only} { @content; }
 }
+
 @mixin for-tablet-portrait-up {
   @media #{$medium-up} { @content; }
 }
+
 @mixin for-tablet-portrait-only {
   @media #{$medium-only} { @content; }
 }
+
 @mixin for-tablet-landscape-up {
   @media #{$large-up} { @content; }
 }
+
 @mixin for-tablet-landscape-only {
   @media #{$large-only} { @content; }
 }
+
 @mixin for-desktop-up {
   @media #{$xlarge-up} { @content; }
 }
+
 @mixin for-desktop-only {
   @media #{$xlarge-only} { @content; }
 }
+
 @mixin for-big-desktop-up {
   @media #{$xxlarge-up} { @content; }
 }
-
 
 //Table Layout Mixin
 @mixin table {
@@ -130,5 +135,8 @@
   tfoot tr td,
   tbody tr th,
   tbody tr td,
-  tr td { display: $table-display; line-height: $table-line-height; }
+  tr td {
+    display: $table-display;
+    line-height: $table-line-height;
+  }
 }

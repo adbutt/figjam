@@ -1,0 +1,29 @@
+.wrapper {
+  max-width: $wrapper-width;
+  padding: 0 $margin-horizontal-large;
+  margin: 0 auto;
+  position: relative;
+  // z-index: 10;
+
+  @include for-tablet-landscape-up {
+    padding: 0 rem-calc(105) 0 $margin-horizontal-large;
+  }
+}
+
+.screenO {
+  background: rgba(0, 0, 0, 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: all 300ms linear;
+  opacity: 0;
+
+  .nav--active & {
+    z-index: 995;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 1;
+  }
+}
