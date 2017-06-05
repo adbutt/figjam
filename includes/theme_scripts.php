@@ -70,9 +70,9 @@ if (!(function_exists('figjam_load_scripts'))) {
     wp_deregister_script('jquery');
         wp_enqueue_script(
             'jquery',
-            FIGJAM_TEMPLATE_URL . "/bower_components/jquery/dist/jquery.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js",
             array(),
-            '1.11.1',
+            '3.2.1',
             true
         );
 
