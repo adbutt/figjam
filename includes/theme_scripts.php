@@ -57,6 +57,7 @@ if (!(function_exists('figjam_load_scripts'))) {
         } else {
 
     // PRODUCTION STYLES - MINIFIED
+
       wp_enqueue_style(
       'figjam-style-min',
       FIGJAM_TEMPLATE_URL . "/assets/css/project.min.css",
@@ -65,6 +66,16 @@ if (!(function_exists('figjam_load_scripts'))) {
       );
 
     //PRODUCTION SCRIPTS - MINIFIED ALL
+    // jQuery
+    wp_deregister_script('jquery');
+        wp_enqueue_script(
+            'jquery',
+            FIGJAM_TEMPLATE_URL . "/bower_components/jquery/dist/jquery.js",
+            array(),
+            '1.11.1',
+            true
+        );
+
       wp_enqueue_script(
         'figjam-script-min',
         FIGJAM_TEMPLATE_URL . "/assets/js/project.min.js",
