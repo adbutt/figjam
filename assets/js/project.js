@@ -1431,23 +1431,6 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 		$( 'body' ).addClass( 'loaded' );
 	} );
 
-	// var plx = function() {
-	// 	if ( $( '*[data-parallax-this]' ) .length ) {
-	// 		var e = $( document ).scrollTop( ) / 2,
-	// 			t = 0.1 * $( document ).scrollTop( );
-	//
-	// 		console.log( e );
-	// 		$( '*[data-parallax-this]' ).each( function() {
-	// 			var a = $( this );
-	//
-	// 			a.css( {
-	// 				transform: 'translate3d(0, ' + e + 'px, 0)'
-	// 			} ), a.find( '*[data-parallax-secondary]' ).css( {
-	// 				transform: 'translate3d(0, ' + t + 'px, 0)'
-	// 			} );
-	// 		} );
-	// 	}
-	// };
 	$.stellar( {
 		// Set scrolling to be in either one or both directions
 		horizontalScrolling: false,
@@ -1488,6 +1471,27 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 	$( function() {
 		// DOM ready, take it away
 	} );
+
+	var headcont = $( '.expertise-header-inner .container' );
+
+	headcont.waypoint( function( direction ) {
+		if ( direction === 'down' ) {
+			headcont.addClass( 'fadeOut' );
+			headcont.removeClass( 'fadeIn' );
+		}
+	}, {
+		offset: '50'
+	} );
+
+	headcont.waypoint( function( direction ) {
+		if ( direction === 'up' ) {
+			headcont.addClass( 'fadeIn' );
+			headcont.removeClass( 'fadeOut' );
+		}
+	}, {
+		offset: '-50'
+	} );
+
 	$( document ).ready( function() {
 		//Nav Toggle
 		$( 'a.nav-toggle' ).click( function( e ) {
@@ -1524,6 +1528,23 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 				redirectPage();
 			}, 1000 );
 		} );
+
+		// var waypoints = $( '.expertise-header-inner .container' ).waypoint( function( direction ) {
+
+		// 	if ( direction === 'down' ) {
+		// 		$( this ).addClass( 'fadeout' );
+		// 	}
+		// }, {
+		// 	offset: '50%'
+		// } ).waypoint( function( direction ) {
+		// 	if ( direction === 'up' ) {
+		// 		$( this ).removeClass( 'fadeout' );
+		// 	}
+		// }, {
+		// 	offset: '0'
+		// } );
+		// waypoints();
+
 	} );//end document ready
 	//Ensures back button works in FF
 	$( window ).unload( function() {
@@ -1536,4 +1557,9 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 			window.location.reload();
 		}
 	} );
+	//fade parallax content out on scroll
+	$( window ).scroll( function() {
+		$( '.expertise-header-inner .container' ).css( {'opacity': 1 - $( window ).scrollTop() / 175} );
+	} );
+
 } )( window, document, jQuery );

@@ -779,11 +779,18 @@ blockquote p {
   padding: 100px;
   position: relative;
   width: 100%;
-  overflow: hidden; }
+  overflow: hidden;
+  background: #fff; }
+  .expertise-header-inner .container {
+    position: relative;
+    z-index: 1; }
 
 .expertise-header-content {
-  position: relative;
-  z-index: 1; }
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  transition-delay: 1s; }
+  .loaded .expertise-header-content {
+    opacity: 1; }
 
 .expertise-header-img-bg {
   position: absolute;
@@ -795,11 +802,15 @@ blockquote p {
   height: 100%;
   background: url(../images/para-test.jpg) center center no-repeat;
   background-size: cover;
-  z-index: 0; }
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1.5s linear; }
+  .loaded .expertise-header-img-bg {
+    opacity: 1; }
 
 .page-container {
   position: relative;
-  background: #1b1d1e; }
+  background: #fff; }
 
 /**
  * partials/sidebar
