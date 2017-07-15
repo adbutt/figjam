@@ -8,6 +8,9 @@ if (!(function_exists('figjam_load_scripts'))) {
     {
         if ($debug || defined('SCRIPT_DEBUG') && true === SCRIPT_DEBUG) {
             // DEVELOPMENT STYLES
+            wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css' );
+
+
       wp_enqueue_style(
       'figjam-style',
       FIGJAM_TEMPLATE_URL . "/assets/css/project.css",
@@ -15,19 +18,14 @@ if (!(function_exists('figjam_load_scripts'))) {
       FIGJAM_VERSION
       );
 
-      wp_enqueue_style(
-      'slick-style',
-        "//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"
-      );
-
       // DEVELOPMENT SCRIPTS
       // jQuery
       wp_deregister_script('jquery');
             wp_enqueue_script(
         'jquery',
-        FIGJAM_TEMPLATE_URL . "/bower_components/jquery/dist/jquery.js",
+        FIGJAM_TEMPLATE_URL . "/bower_components/jquery/dist/jquery.min.js",
         array(),
-        '1.11.1',
+        '3.2.1',
         true
       );
 
@@ -40,14 +38,6 @@ if (!(function_exists('figjam_load_scripts'))) {
       // );
 
       wp_enqueue_script(
-        'slick-script',
-        "//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js",
-        array(),
-        FIGJAM_VERSION,
-        true
-      );
-
-      wp_enqueue_script(
         'figjam-script',
         FIGJAM_TEMPLATE_URL . "/assets/js/project.js",
         array(),
@@ -57,6 +47,16 @@ if (!(function_exists('figjam_load_scripts'))) {
         } else {
 
     // PRODUCTION STYLES - MINIFIED
+    // jQuery
+    wp_deregister_script('jquery');
+    wp_enqueue_script(
+        'jquery',
+        "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js",
+        array(),
+        '3.2.1',
+        true
+    );
+
       wp_enqueue_style(
       'figjam-style-min',
       FIGJAM_TEMPLATE_URL . "/assets/css/project.min.css",

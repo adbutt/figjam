@@ -5,30 +5,62 @@
 
 // Header container
 .header {
-  padding-top: rem-calc(40);
-
-  @include for-phone-only {
-    background: #ba1b0a;
-  }
-
-  @include for-tablet-portrait-up {
-    background: #bada55;
-  }
-
-  @include for-tablet-portrait-only {
+    position: relative;
+    z-index:999;
+    min-height:rem-calc(60);
+    padding: 0 1rem;
     background: #222;
-  }
-
-  @include for-tablet-landscape-only {
-    background: purple;
-  }
+    @include for-tablet-landscape-up {
+        @include deco_flex_center_space_between;
+        align-items: stretch;
+    }
+  // @include for-phone-only {
+  //   background: #ba1b0a;
+  // }
+  //
+  // @include for-tablet-portrait-up {
+  //   background: #bada55;
+  // }
+  //
+  // @include for-tablet-portrait-only {
+  //
+  // }
+  //
+  // @include for-tablet-landscape-only {
+  //   background: purple;
+  // }
 }
 
 // Logo
 .logo {
   display: block;
-}
+  padding: rem-calc(15 0);
+  max-width: rem-calc(30);
+  text-align: left;
+  // /max-width: rem-calc(200);
+  // top: rem-calc(10);
+  // left: rem-calc(15);
+  // height: rem-calc(30);
+  backface-visibility: hidden;
 
-img.logo-img {
-  max-width: 80px !important;
+  @include for-tablet-landscape-up {
+      -webkit-box-flex: 1;
+      flex:1;
+    // margin: rem-calc(40) auto;
+    // position: relative;
+    // top: auto;
+    // left: auto;
+    // height: rem-calc(60);
+  }
+
+  svg {
+    height: auto;
+    //width: 100%;
+    max-height: rem-calc(30);
+    backface-visibility: hidden;
+
+        @include for-tablet-landscape-up {
+            max-height: rem-calc(60);
+        }
+    }
 }

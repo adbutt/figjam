@@ -23,6 +23,18 @@
  * modules/mixins
  * ---
  */
+/**
+ * Hide text while making it readable for screen readers
+ * 1. Needed in WebKit-based browsers because of an implementation bug;
+ *    See: https://code.google.com/p/chromium/issues/detail?id=457146
+ */
+.menu-toggle p {
+  overflow: hidden;
+  padding: 0;
+  /* 1 */
+  text-indent: 101%;
+  white-space: nowrap; }
+
 /*! normalize.css v6.0.0 | MIT License | github.com/necolas/normalize.css */
 html {
   line-height: 1.15;
@@ -516,6 +528,92 @@ blockquote p {
   h6 {
     font-size: 1rem; } }
 
+@media (max-width: 56.25em) {
+  .main-navigation .main-nav li {
+    float: none;
+    clear: both;
+    display: block !important;
+    text-align: left !important; }
+  .main-navigation .main-nav li.hide-on-mobile {
+    display: none !important; }
+  .main-navigation .sub-menu.toggled-on,
+  .main-navigation .children.toggled-on {
+    display: block !important;
+    opacity: 1 !important; }
+  .main-navigation .dropdown-menu-toggle:before {
+    content: "\f107" !important; }
+  .main-navigation .sfHover > a .dropdown-menu-toggle:before {
+    content: "\f106" !important; }
+  .main-navigation .menu-item-has-children .dropdown-menu-toggle {
+    float: right; }
+  .main-navigation .mobile-bar-items {
+    display: block; }
+  .main-navigation .menu li.search-item {
+    display: none !important; }
+  .main-navigation .sf-menu > li.menu-item-float-right {
+    float: none !important;
+    display: inline-block !important; }
+  [class*="nav-float-"] .site-header .inside-header > * {
+    float: none;
+    clear: both; }
+  /* End mobile navigation */
+  .both-right.separate-containers .inside-left-sidebar,
+  .both-left.separate-containers .inside-left-sidebar,
+  .both-right.separate-containers .inside-right-sidebar,
+  .both-left.separate-containers .inside-right-sidebar {
+    margin-right: 0;
+    margin-left: 0; }
+  .site-main {
+    margin-left: 0 !important;
+    margin-right: 0 !important; }
+  body:not(.no-sidebar) .site-main {
+    margin-bottom: 0 !important; }
+  .fluid-header .inside-header {
+    text-align: center; }
+  .header-widget {
+    float: none;
+    max-width: 100%;
+    text-align: center; }
+  .alignleft,
+  .alignright {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; }
+  .post-image-aligned-left .post-image,
+  .post-image-aligned-right .post-image {
+    float: none;
+    margin: 2em 0;
+    text-align: center; }
+  .site-info {
+    padding-left: 10px;
+    padding-right: 10px; }
+  .site-info {
+    text-align: center; }
+  .copyright-bar {
+    float: none !important;
+    text-align: center !important; }
+  .footer-bar {
+    float: none !important;
+    text-align: center !important;
+    margin-bottom: 20px; }
+  .footer-bar .widget_nav_menu li {
+    float: none;
+    display: inline-block;
+    padding: 5px 0; }
+  .site-footer .footer-widgets .footer-widgets-container .inside-footer-widgets {
+    margin: 0; }
+  .site-footer .footer-widgets .footer-widgets-container .inner-padding {
+    padding: 0; }
+  .comment .children {
+    padding-left: 10px;
+    margin-left: 0; }
+  .edd_download {
+    display: block;
+    float: none !important;
+    margin-bottom: 1.5em;
+    width: 100% !important; } }
+
 /**
  * partials/wordpress
  * ---
@@ -568,25 +666,43 @@ blockquote p {
  * ---
  */
 .header {
-  padding-top: 2.5rem; }
-  @media only screen and (max-width: 37.5em) {
+  position: relative;
+  z-index: 999;
+  min-height: 3.75rem;
+  padding: 0 1rem;
+  background: #222; }
+  @media only screen and (min-width: 56.31em) {
     .header {
-      background: #ba1b0a; } }
-  @media only screen and (min-width: 37.56em) {
-    .header {
-      background: #bada55; } }
-  @media only screen and (min-width: 37.56em) and (max-width: 56.25em) {
-    .header {
-      background: #222; } }
-  @media only screen and (min-width: 56.31em) and (max-width: 75em) {
-    .header {
-      background: purple; } }
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+          align-items: center;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+      -ms-flex-direction: row;
+          flex-direction: row;
+      -ms-flex-align: stretch;
+          align-items: stretch; } }
 
 .logo {
-  display: block; }
-
-img.logo-img {
-  max-width: 80px !important; }
+  display: block;
+  padding: 0.94rem 0;
+  max-width: 1.88rem;
+  text-align: left;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; }
+  @media only screen and (min-width: 56.31em) {
+    .logo {
+      -ms-flex: 1;
+          flex: 1; } }
+  .logo svg {
+    height: auto;
+    max-height: 1.88rem;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden; }
+    @media only screen and (min-width: 56.31em) {
+      .logo svg {
+        max-height: 3.75rem; } }
 
 /**
  * partials/sidebar
@@ -596,12 +712,172 @@ img.logo-img {
  * partials/footer
  * ---
  */
-/**
- * partials/nav
- * ---
- * Menus
- */
-.nav {
+.main-navigation {
+  display: block;
+  width: 100%;
+  padding: 0;
+  z-index: 100; }
+  @media only screen and (min-width: 56.31em) {
+    .main-navigation {
+      -ms-flex: 1;
+          flex: 1; } }
+  .main-navigation .inside-navigation {
+    position: relative; }
+  .main-navigation .main-nav ul {
+    display: none;
+    margin: 0;
+    padding-left: 0;
+    list-style: none; }
+    @media only screen and (min-width: 56.31em) {
+      .main-navigation .main-nav ul {
+        width: 100%;
+        min-width: 39.375rem;
+        min-height: 5rem;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+            align-items: center;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+        -ms-flex-direction: row;
+            flex-direction: row; } }
+    .main-navigation .main-nav ul ul {
+      position: relative;
+      top: 0;
+      right: auto;
+      left: auto;
+      width: 100%;
+      min-height: 0; }
+      @media only screen and (min-width: 56.31em) {
+        .main-navigation .main-nav ul ul {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 51%;
+          min-width: 200px;
+          margin: 0;
+          padding: 0;
+          transform: translate3d(-50%, 0, 0);
+          transform-origin: center;
+          border: solid 1px #EEEEEE;
+          -webkit-backface-visibility: hidden;
+                  backface-visibility: hidden;
+          background: #FFFFFF;
+          text-align: center;
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+          opacity: 0;
+          z-index: 99999; } }
+  .main-navigation.toggled .main-nav > ul {
+    display: block; }
+    @media only screen and (min-width: 56.31em) {
+      .main-navigation.toggled .main-nav > ul {
+        display: -ms-flexbox;
+        display: flex; } }
+
+.main-navigation ul li a {
+  display: block; }
+
+.main-navigation .main-nav ul ul li a {
+  padding: 10px 20px;
+  line-height: normal; }
+
+.main-navigation li {
+  position: relative; }
+
+.main-navigation a {
+  display: block;
+  text-decoration: none; }
+
+.main-navigation ul ul ul {
+  top: 0;
+  left: 100%; }
+
+.main-navigation ul ul a {
+  display: block; }
+
+.main-navigation ul ul li {
+  width: 100%; }
+
+.main-navigation ul li:hover > ul,
+.main-navigation ul li.sfHover > ul,
+.secondary-navigation ul li:hover > ul,
+.secondary-navigation ul li.sfHover > ul {
+  display: block; }
+
+.main-navigation ul li .dropdown-toggle,
+.secondary-navigation ul li .dropdown-toggle {
+  display: none; }
+
+.menu-item-has-children .dropdown-menu-toggle {
+  display: inline-block;
+  height: 100%;
+  padding-left: 10px;
+  clear: both; }
+
+nav ul ul .menu-item-has-children .dropdown-menu-toggle {
+  float: right; }
+
+nav:not(.toggled):not(.slideout-navigation) ul ul .menu-item-has-children .dropdown-menu-toggle {
+  padding-right: 15px; }
+
+.dropdown-menu-toggle:before {
+  speak: none;
+  font-family: FontAwesome;
+  line-height: 1em;
+  content: "\f107"; }
+
+.dropdown-hover .sub-menu .dropdown-menu-toggle:before,
+.dropdown-hover .children .dropdown-menu-toggle:before {
+  content: "\f105"; }
+
+.main-navigation .main-nav ul li.menu-item-has-children > a,
+.secondary-navigation .main-nav ul li.menu-item-has-children > a {
+  position: relative;
+  padding-right: 0; }
+
+.menu-toggle {
+  display: block;
+  position: absolute;
+  top: -2.81rem;
+  right: 0;
+  width: 1.88rem;
+  height: 28px;
+  transition: all 0.4s cubic-bezier(0.77, 0, 0.17, 1); }
+  .menu-toggle span {
+    display: block;
+    width: 1.88rem;
+    height: 0.12rem;
+    margin: 0 0 5px;
+    transform: translate3d(0, 0, 0);
+    border-radius: 1px;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    background: #FFFFFF;
+    transition: all 600ms cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+  @media only screen and (min-width: 56.31em) {
+    .menu-toggle {
+      display: none !important;
+      cursor: pointer; } }
+
+.toggled .menu-toggle span {
+  filter: alpha(opacity=0);
+  opacity: 0; }
+
+.toggled .menu-toggle span.line1,
+.toggled .menu-toggle span.line3 {
+  background: #FFFFFF;
+  filter: alpha(opacity=100);
+  opacity: 1; }
+
+.toggled .menu-toggle span.line1 {
+  margin-top: 8px;
+  transform: rotate(45deg); }
+
+.toggled .menu-toggle span.line3 {
+  margin-top: -14px;
+  transform: rotate(-45deg); }
+
+button {
   background: #bada55; }
 
 table {
@@ -831,4 +1107,30 @@ input[type="search"] {
   h2,
   h3 {
     page-break-after: avoid; } }
+
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */ }
+
+.cf:after {
+  clear: both; }
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+  *zoom: 1; }
 /*# sourceMappingURL=project.css.map */

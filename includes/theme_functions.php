@@ -1,13 +1,13 @@
 <?php
 
 // Remove the <div> surrounding the dynamic navigation to cleanup markup
-if (!(function_exists('figjam_wp_nav_menu_args'))) {
-    function figjam_wp_nav_menu_args($args = '')
-    {
-        $args['container'] = false;
-        return $args;
-    }
-}
+// if (!(function_exists('figjam_wp_nav_menu_args'))) {
+//     function figjam_wp_nav_menu_args($args = '')
+//     {
+//         $args['container'] = false;
+//         return $args;
+//     }
+// }
 
 // Add page slug to body class, love this - Credit: Starkers Wordpress Theme
 if (!(function_exists('figjam_add_slug_to_body_class'))) {

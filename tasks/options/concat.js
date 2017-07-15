@@ -10,6 +10,8 @@ module.exports = {
 	main: {
 		src: [
 			'bower_components/modernizr/modernizr.js',
+			'assets/js/src/navigation.js',
+			'assets/js/src/dropdown.js',
 			'assets/js/src/project.js'
 		],
 			dest: 'assets/js/project.js'

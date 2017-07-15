@@ -1409,41 +1409,267 @@ window.Modernizr = (function( window, document, undefined ) {
 })(this, this.document);
 
 'use strict';
+/**
+ * navigation.js
+ *
+ * Handles toggling the navigation menu for small screens
+ */
+( function( $ ) {
+	$.fn.FigjamMobileMenu = function( options ) {
+		// Set the default settings
+		var settings = $.extend( {
+			menu: '.main-navigation'
+		}, options );
+
+		// Get the clicked item
+		var _this = $( this );
+
+		// Bail if our menu doesn't exist
+		if ( !$( settings.menu ).length ) {
+			return;
+		}
+
+		// Toggle the mobile menu
+		_this.on( 'click', function( e ) {
+			e.preventDefault();
+			_this = $( this );
+			_this.closest( settings.menu ).toggleClass( 'toggled' );
+			_this.closest( settings.menu ).attr( 'aria-expanded', _this.closest( settings.menu ).attr( 'aria-expanded' ) === 'true' ? 'false' : 'true' );
+			_this.toggleClass( 'toggled' );
+			_this.attr( 'aria-expanded', _this.attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
+		} );
+
+		// Check to see if we're clicking on the dropdown arrow
+		$( 'nav' ).on( 'click', '.dropdown-menu-toggle', function( e ) {
+			e.preventDefault();
+
+			// This prevents the <a> element from thinking it's been clicked
+			e.stopPropagation();
+		} );
+
+		// Close the menu on click
+		// This is essential if you're using anchors for a one page site
+		$( 'nav' ).on( 'click', '.main-nav a', function() {
+			// Only do something if the menu toggle is visible
+			if ( $( '.menu-toggle' ).is( ':visible' ) ) {
+				var _mthis = $( this ), url = _mthis.attr( 'href' );
+
+				// Make sure this doesn't fire if we're clicking the dropdown arrow
+				// This will only fire if we're not clicking a dropdown arrow, and the URL isn't # or empty
+				if ( url !== '#' && url !== '' ) {
+					_mthis.closest( settings.menu ).removeClass( 'toggled' );
+					_mthis.closest( settings.menu ).attr( 'aria-expanded', 'false' );
+					_mthis.removeClass( 'toggled' );
+					_mthis.attr( 'aria-expanded', 'false' );
+				}
+			}
+		} );
+	};
+}( jQuery ) );
+
+jQuery( document ).ready( function( $ ) {
+	// Initiate our mobile menu
+	$( '#site-navigation .menu-toggle' ).FigjamMobileMenu();
+
+	// Build the mobile button that displays the dropdown menu
+	$( 'nav' ).on( 'click', '.dropdown-menu-toggle', function( e ) {
+		e.preventDefault();
+		var _this = $( this );
+		var mobile = $( '.menu-toggle' );
+
+		if ( mobile.is( ':visible' ) ) {
+			_this.closest( 'li' ).toggleClass( 'sfHover' );
+			_this.parent().next( '.children, .sub-menu' ).toggleClass( 'toggled-on' );
+			_this.attr( 'aria-expanded', $( this ).attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
+		}
+
+		// This prevents the <a> element from thinking it's been clicked
+		e.stopPropagation();
+	} );
+
+	// Display the dropdown on click if the item URL doesn't go anywhere
+	$( 'nav' ).on( 'click', '.main-nav .menu-item-has-children > a', function( e ) {
+		var _this = $( this );
+		var mobile = $( '.menu-toggle' );
+		var url = _this.attr( 'href' );
+
+		if ( url === '#' || url === '' ) {
+			if ( mobile.is( ':visible' ) ) {
+				e.preventDefault();
+				_this.closest( 'li' ).toggleClass( 'sfHover' );
+				_this.next( '.children, .sub-menu' ).toggleClass( 'toggled-on' );
+				_this.attr( 'aria-expanded', $( this ).attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
+			}
+		}
+	} );
+} );
+
+'use strict';
+( function( $ ) {
+	$.fn.FigjamDropdownMenu = function( options ) {
+		// Set the default settings
+		var settings = $.extend( {
+			transition: 'fadeIn',
+			transitionSpeed: 150,
+			openDelay: 150,
+			closeDelay: 300
+		}, options );
+
+		var $dropdowns, mobile, click = true;
+
+		$dropdowns = $( this );
+		mobile = $( '.menu-toggle' );
+
+		$dropdowns.attr( 'aria-haspopup', 'true' );
+		$dropdowns.children( 'ul' ).css( {
+			'display': 'none',
+			'opacity': 0
+		} );
+
+		var over = function() {
+			var $this = $( this );
+
+			mobile = $this.closest( '.main-nav' ).prevAll( '.menu-toggle' );
+
+			if ( mobile.is( ':visible' ) ) {
+				return;
+			}
+
+			if ( $this.prop( 'hoverTimeout' ) ) {
+				$this.prop( 'hoverTimeout', clearTimeout( $this.prop( 'hoverTimeout' ) ) );
+			}
+
+			$this.prop( 'hoverIntent', setTimeout( function() {
+				if ( settings.transition === 'slide' ) {
+					$this.children( 'ul' ).slideDown( settings.transitionSpeed ).animate(
+							{opacity: 1},
+							{queue: false, duration: 'fast'}
+						).css( 'display', 'block' );
+				} else {
+					$this.children( 'ul' ).fadeIn( settings.transitionSpeed ).animate(
+						{opacity: 1},
+						{queue: false, duration: 'fast'}
+					).css( 'display', 'block' );
+				}
+				$this.addClass( 'sfHover' );
+			}, settings.openDelay ) );
+		};
+
+		var out = function() {
+			var $this = $( this );
+
+			mobile = $this.closest( '.main-nav' ).prevAll( '.menu-toggle' );
+
+			if ( mobile.is( ':visible' ) ) {
+				return;
+			}
+
+			if ( $this.prop( 'hoverIntent' ) ) {
+				$this.prop( 'hoverIntent', clearTimeout( $this.prop( 'hoverIntent' ) ) );
+			}
+
+			$this.prop( 'hoverTimeout', setTimeout( function() {
+				$this.children( 'ul' ).fadeTo( 10, 0, function() {
+					$this.children( 'ul' ).css( 'display', 'none' );
+				} );
+				$this.removeClass( 'sfHover' );
+			}, settings.closeDelay ) );
+		};
+
+		$dropdowns.on( 'mouseenter', over ).on( 'mouseleave', out );
+		$dropdowns.on( 'focusin', over ).on( 'focusout', out );
+
+		if ( document.addEventListener ) {
+			if ( 'ontouchstart' in document.documentElement ) {
+				$dropdowns.each( function() {
+					var $this = $( this );
+
+					mobile = $this.closest( '.main-nav' ).prevAll( '.menu-toggle' );
+
+					if ( mobile.is( ':visible' ) ) {
+						return;
+					}
+
+					if ( $this.parent().closest( '.menu-item-has-children' ).hasClass( 'mega-menu' ) ) {
+						return;
+					}
+
+					this.addEventListener( 'touchstart', function( e ) {
+						if ( e.touches.length === 1 ) {
+							// Prevent touch events within dropdown bubbling down to document
+							e.stopPropagation();
+
+							// Toggle hover
+							if ( !$this.hasClass( 'sfHover' ) ) {
+								// Prevent link on first touch
+								if ( e.target === this || e.target.parentNode === this ) {
+									e.preventDefault();
+								}
+
+								click = false;
+
+								// Hide other open dropdowns
+								$this.siblings().removeClass( 'sfHover' );
+								$this.siblings().children( 'ul' ).css( {
+									'display': 'none',
+									'opacity': 0
+								} );
+
+								// Show this dropdown
+								$this.addClass( 'sfHover' );
+								$this.children( 'ul' ).css( {
+									'display': 'block',
+									'opacity': 1
+								} );
+
+								// Hide dropdown on touch outside
+								document.addEventListener( 'touchstart', closeDropdown );
+								var closeDropdown = function( n ) {
+									n.stopPropagation();
+
+									$this.removeClass( 'sfHover' );
+									$this.children( 'ul' ).css( {
+										'display': 'none',
+										'opacity': 0
+									} );
+									document.removeEventListener( 'touchstart', closeDropdown );
+								};
+							}
+						}
+					}, false );
+				} );
+			}
+		}
+
+		$( '.dropdown-menu-toggle' ).on( 'click', function() {
+			mobile = $( this ).closest( '.main-nav' ).prevAll( '.menu-toggle' );
+			if ( mobile.is( ':visible' ) ) {
+				return;
+			}
+			var url = $( this ).parent().attr( 'href' );
+
+			if ( typeof url !== 'undefined' && click ) {
+				window.location.href = $( this ).parent().attr( 'href' );
+			}
+		} );
+
+		$.fn.FigjamDropdownMenu.destroy = function() {
+			$dropdowns.children( 'ul' ).css( 'display', '' );
+			$dropdowns.unbind( 'mouseenter mouseleave focusin focusout' );
+		};
+	};
+}( jQuery ) );
+
+jQuery( document ).ready( function( $ ) {
+	// Initiate our dropdown menu
+	$( '.sf-menu .menu-item-has-children' ).FigjamDropdownMenu();
+} );
+
+'use strict';
 ( function( window, document, $ ) {
 
 	$( function() {
 		// DOM ready, take it away
-		$( '.product-wrapper' ).slick( {
-			infinite: true,
-			slidesToShow: 4,
-			slidesToScroll: 1,
-			responsive: [{
-				breakpoint: 1024,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 1,
-					infinite: true,
-					dots: false
-				}
-			},
-			{
-				breakpoint: 600,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 480,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1
-				}
-			}
-				// You can unslick at a given breakpoint now by adding:
-				// settings: "unslick"
-				// instead of a settings object
-			]
-		} );
+
 	} );
 } )( window, document, jQuery );

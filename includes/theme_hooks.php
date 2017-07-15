@@ -38,7 +38,7 @@ add_filter('body_class', 'figjam_add_slug_to_body_class'); // Add slug to body c
 
 add_filter('widget_text', 'shortcode_unautop'); // Remove <p> tags in Dynamic Sidebars (better!)
 
-add_filter('wp_nav_menu_args', 'figjam_wp_nav_menu_args'); // Remove surrounding <div> from WP Navigation
+//add_filter('wp_nav_menu_args', 'figjam_wp_nav_menu_args'); // Remove surrounding <div> from WP Navigation
 //add_filter('nav_menu_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected classes (Commented out by default)
 //add_filter('nav_menu_item_id', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected ID (Commented out by default)
 //add_filter('page_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> Page ID's (Commented out by default)
