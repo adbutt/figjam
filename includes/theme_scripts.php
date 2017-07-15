@@ -27,8 +27,8 @@ if (!(function_exists('figjam_load_scripts'))) {
         'jquery',
         FIGJAM_TEMPLATE_URL . "/bower_components/jquery/dist/jquery.js",
         array(),
-        '1.11.1',
-        true
+        '3.2.1',
+        false
       );
 
       // wp_enqueue_script(

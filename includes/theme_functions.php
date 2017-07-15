@@ -1,5 +1,39 @@
 <?php
 
+//Add Ajax Url to wp_head
+
+function add_ajaxurl_cdata_to_front(){ ?>
+    <script type="text/javascript"> //<![CDATA[
+        ajaxurl = '<?php echo admin_url( 'admin-ajax.php'); ?>';
+    //]]> </script>
+<?php }
+add_action( 'wp_head', 'add_ajaxurl_cdata_to_front', 1);
+
+
+//Test Ajax Working
+add_action( 'wp_footer', 'add_js_to_wp_footer' );
+function add_js_to_wp_footer(){ ?>
+    <script type="text/javascript">
+    jQuery('#view_site_description').click(function(){
+        jQuery.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {"action": "view_site_description"},
+            success: function(data){alert(data);}
+        });
+        return false;
+    });
+    </script>
+<?php }
+
+function view_site_description(){
+    echo get_bloginfo( 'description', 'display' );
+    die();
+}
+add_action( 'wp_ajax_view_site_description', 'view_site_description' );
+add_action( 'wp_ajax_nopriv_view_site_description', 'view_site_description' );
+
+
 // Remove the <div> surrounding the dynamic navigation to cleanup markup
 if (!(function_exists('figjam_wp_nav_menu_args'))) {
     function figjam_wp_nav_menu_args($args = '')
