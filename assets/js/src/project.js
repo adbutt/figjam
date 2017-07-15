@@ -62,6 +62,16 @@
 				redirectPage();
 			}, 1000 );
 		} );
-		plx();
 	} );//end document ready
+	//Ensures back button works in FF
+	$( window ).unload( function() {
+		$( window ).unbind( 'unload' );
+	} );
+
+	//Stop back button cache in Safari
+	$( window ).bind( 'pageshow', function( e ) {
+		if ( e.originalEvent.persisted ) {
+			window.location.reload();
+		}
+	} );
 } )( window, document, jQuery );

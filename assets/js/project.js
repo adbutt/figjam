@@ -6199,23 +6199,23 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 		$( 'body' ).addClass( 'loaded' );
 	} );
 
-	var plx = function() {
-		if ( $( '*[data-parallax-this]' ) .length ) {
-			var e = $( document ).scrollTop( ) / 2,
-				t = 0.1 * $( document ).scrollTop( );
-
-			console.log( e );
-			$( '*[data-parallax-this]' ).each( function() {
-				var a = $( this );
-
-				a.css( {
-					transform: 'translate3d(0, ' + e + 'px, 0)'
-				} ), a.find( '*[data-parallax-secondary]' ).css( {
-					transform: 'translate3d(0, ' + t + 'px, 0)'
-				} );
-			} );
-		}
-	};
+	// var plx = function() {
+	// 	if ( $( '*[data-parallax-this]' ) .length ) {
+	// 		var e = $( document ).scrollTop( ) / 2,
+	// 			t = 0.1 * $( document ).scrollTop( );
+	//
+	// 		console.log( e );
+	// 		$( '*[data-parallax-this]' ).each( function() {
+	// 			var a = $( this );
+	//
+	// 			a.css( {
+	// 				transform: 'translate3d(0, ' + e + 'px, 0)'
+	// 			} ), a.find( '*[data-parallax-secondary]' ).css( {
+	// 				transform: 'translate3d(0, ' + t + 'px, 0)'
+	// 			} );
+	// 		} );
+	// 	}
+	// };
 
 	$( function() {
 		// DOM ready, take it away
@@ -6256,6 +6256,16 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 				redirectPage();
 			}, 1000 );
 		} );
-		plx();
 	} );//end document ready
+	//Ensures back button works in FF
+	$( window ).unload( function() {
+		$( window ).unbind( 'unload' );
+	} );
+
+	//Stop back button cache in Safari
+	$( window ).bind( 'pageshow', function( e ) {
+		if ( e.originalEvent.persisted ) {
+			window.location.reload();
+		}
+	} );
 } )( window, document, jQuery );
