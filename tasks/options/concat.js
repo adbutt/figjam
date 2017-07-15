@@ -11,8 +11,8 @@ module.exports = {
 		src: [
 			'bower_components/modernizr/modernizr.js',
 			'assets/js/vendor/imagesloaded.min.js',
-			'bower_components/velocity/velocity.js',
 			'bower_components/waypoints/lib/jquery.waypoints.min.js',
+			'bower_components/jquery.stellar/jquery.stellar.min.js',
 			'assets/js/src/project.js'
 		],
 		dest: 'assets/js/project.js'

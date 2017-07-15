@@ -10,6 +10,7 @@
     "sassy-inputs": "^1.0.3",
     "jquery": "^3.2.1",
     "waypoints": "^4.0.1",
-    "velocity": "^1.5.0"
+    "velocity": "^1.5.0",
+    "jquery.stellar": "^0.6.2"
   }
 }

@@ -77,6 +77,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="expertise-header-img-bg" data-parallax-this="true"></div>
+                <div class="expertise-header-img-bg" data-stellar-background-ratio="0.5"></div>
             </div>
         </div>
