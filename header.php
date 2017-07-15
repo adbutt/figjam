@@ -73,7 +73,7 @@
                             <p>Great experiences for people, better outcomes for brands – award-winning websites at the forefront of the web.</p><p>From branding, informational and educational sites through to product launches, marketing and social campaigns, our world class responsive websites are designed to improve reach, drive leads, and establish an impressive brand presence.</p>
                             <p></p>
                         </div>
-                        <div class="expertise-cta step-up"><a href="https://humaan.com/planner/" class="arrow-link internal-link">Start a project</a>
+                        <div class="expertise-cta step-up"><a href="#" class="arrow-link internal-link">Start a project</a>
                         </div>
                     </div>
                 </div>
